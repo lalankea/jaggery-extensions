@@ -221,7 +221,7 @@ public class OAuthHostObject extends ScriptableObject {
                         new String(Base64.decode(SAMLResponse))).getBytes());
 
                 String queryParam = "grant_type=" + SSOAgentConstants.OAuth2.SAML2_BEARER_GRANT_TYPE +
-                        "&assertion=" + URLEncoder.encode(encodedSAMLAssertion, "UTF-8");
+                        "&assertion=" + URLEncoder.encode(encodedSAMLAssertion, "UTF-8") + "&scope=openid";
 
                 String accessTokenResponse = SAML2GrantManager.executePost(oauthHostObject.tokenEndpoint, queryParam,
                         Base64.encodeBytes(keySecret.getBytes(Charset.forName("UTF-8"))).replace("\n", ""));
